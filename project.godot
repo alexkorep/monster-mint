@@ -14,6 +14,10 @@ config/name="monster-mint"
 run/main_scene="res://screens/MainScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameManager="*res://scripts/game_manager.gd"
+
 [display]
 
 window/size/width=360

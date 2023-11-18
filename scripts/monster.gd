@@ -15,7 +15,10 @@ func react_to_click():
 	var mouse_pos = get_global_mouse_position()
 	$CandleParticles2D.global_position = mouse_pos  # Set the Particles2D position
 	$CandleParticles2D.emitting = true
+	
+	GameManager.game_manager.increase_score(1)
 
-func _on_MonsterArea2D_input_event(viewport, event, shape_idx):
+
+func _on_MonsterArea2D_input_event(_viewport, event, _shape_idx):
 	if (event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed) or (event is InputEventScreenTouch and  event.pressed):
 		react_to_click()

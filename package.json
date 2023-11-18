@@ -1,0 +1,14 @@
+{
+  "name": "monster-mint",
+  "version": "1.0.0",
+  "description": "A clicker game with cute monsters",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "author": "Alexey Korepanov",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
+}
