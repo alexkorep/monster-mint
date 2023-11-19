@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://components/HUD/score_label.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/candies/candy002.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Chewy/Chewy-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://components/HUD/HUD.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 29
+font_data = ExtResource( 3 )
+
+[node name="HUD" type="Node2D"]
+script = ExtResource( 4 )
+score = 18
+
+[node name="ScorePanel" type="Panel" parent="."]
+margin_left = 16.0
+margin_top = 29.0
+margin_right = 141.0
+margin_bottom = 71.0
+
+[node name="ScoreCandySprite" type="Sprite" parent="ScorePanel"]
+position = Vector2( 100, 22 )
+scale = Vector2( 0.36, 0.36 )
+texture = ExtResource( 2 )
+
+[node name="ScoreLabel" type="Label" parent="ScorePanel"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 73.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+script = ExtResource( 1 )
