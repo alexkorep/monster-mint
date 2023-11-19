@@ -57,6 +57,9 @@ func set_monster(monster_no):
 	$Monster.initial_health = monster.initial_health
 	$Monster.current_health = monster.initial_health
 	$Monster.set_texture(monster.texture)
+	
+	var total_monsters = len(get_current_level().get_children())
+	$HUD.set_monster_number(monster_no + 1, total_monsters)
 
 func next_monster():
 	current_monster += 1

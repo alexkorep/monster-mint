@@ -56,37 +56,37 @@ background = ExtResource( 1 )
 
 [node name="Monster01-01" type="Node" parent="Levels/Level001"]
 script = ExtResource( 6 )
-initial_health = 2.0
+initial_health = 10.0
 texture = ExtResource( 15 )
 
 [node name="Monster01-02" type="Node" parent="Levels/Level001"]
 script = ExtResource( 6 )
-initial_health = 10.0
+initial_health = 20.0
 texture = ExtResource( 7 )
 
 [node name="Monster01-03" type="Node" parent="Levels/Level001"]
 script = ExtResource( 6 )
-initial_health = 10.0
+initial_health = 30.0
 texture = ExtResource( 11 )
 
 [node name="Monster01-04" type="Node" parent="Levels/Level001"]
 script = ExtResource( 6 )
-initial_health = 10.0
+initial_health = 40.0
 texture = ExtResource( 13 )
 
 [node name="Monster01-05" type="Node" parent="Levels/Level001"]
 script = ExtResource( 6 )
-initial_health = 10.0
+initial_health = 50.0
 texture = ExtResource( 8 )
 
 [node name="Monster01-06" type="Node" parent="Levels/Level001"]
 script = ExtResource( 6 )
-initial_health = 10.0
+initial_health = 60.0
 texture = ExtResource( 9 )
 
 [node name="Monster01-07" type="Node" parent="Levels/Level001"]
 script = ExtResource( 6 )
-initial_health = 10.0
+initial_health = 100.0
 texture = ExtResource( 14 )
 
 [node name="Level002" type="Node" parent="Levels"]

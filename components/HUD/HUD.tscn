@@ -33,3 +33,19 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 2
 script = ExtResource( 1 )
+
+[node name="MonsterNumberPanel" type="Panel" parent="."]
+margin_left = 251.0
+margin_top = 30.0
+margin_right = 344.0
+margin_bottom = 70.0
+
+[node name="MonsterNumberLabel" type="Label" parent="MonsterNumberPanel"]
+margin_left = 12.0
+margin_top = 1.0
+margin_right = 81.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 1 )
+text = "1/10"
+align = 1
+script = ExtResource( 1 )
