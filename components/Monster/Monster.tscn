@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/sprites/monsters/monster001.png" type="Texture" id=1]
 [ext_resource path="res://components/Monster/monster_area2d.gd" type="Script" id=2]
@@ -38,6 +38,16 @@ tracks/0/keys = {
 "values": [ Vector2( 0.4, 0.4 ), Vector2( 0.466, 0.466 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.00392157, 0.0588235, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=6]
+ProgressBar/styles/bg = SubResource( 4 )
+ProgressBar/styles/fg = SubResource( 5 )
+
 [node name="Monster" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -75,6 +85,7 @@ margin_left = 115.0
 margin_top = 78.0
 margin_right = 246.0
 margin_bottom = 92.0
+theme = SubResource( 6 )
 percent_visible = false
 
 [connection signal="input_event" from="MonsterSprite/MonsterArea2D" to="MonsterSprite/MonsterArea2D" method="_on_MonsterArea2D_input_event"]

@@ -1,17 +1,14 @@
 extends Node
 
-signal score_updated(new_score)
-
 var current_level: int = 0
 var current_monster: int = 0
+# Initialize game state and score
+var is_game_over = false
+var score = 0
 
 func _ready():
 	$Monster.connect("ui_monster_hit", self, "_on_ui_monster_hit")
 	start_game()
-
-# Initialize game state and score
-var is_game_over = false
-var score = 0
 
 func start_game():
 	# Initialize game state and score
@@ -27,10 +24,9 @@ func end_game():
 func increase_score(points):
 	# Increment the score
 	score += points
-	emit_signal("score_updated", score)
+	$HUD.set_score(score)
 
 func _on_ui_monster_hit():
-	increase_score(1)
 	var hp = 1
 	var health = $Monster.current_health
 	if health > hp:
@@ -38,6 +34,9 @@ func _on_ui_monster_hit():
 		$Monster.current_health = new_health
 		print(new_health)
 	else:
+		var candies = get_current_monster().initial_health
+		increase_score(candies)
+		$CandleParticles2D.emitting = true
 		next_monster()
 
 func get_current_level():
