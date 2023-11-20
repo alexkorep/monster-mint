@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/sprites/backgrounds/background001.png" type="Texture" id=1]
 [ext_resource path="res://components/Monster/Monster.tscn" type="PackedScene" id=2]
@@ -16,21 +16,30 @@
 [ext_resource path="res://assets/sprites/monsters/monster007.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/monsters/monster001.png" type="Texture" id=15]
 [ext_resource path="res://assets/sprites/candies/candy001.png" type="Texture" id=16]
+[ext_resource path="res://scripts/WeaponstScrollContainer.gd" type="Script" id=19]
+[ext_resource path="res://components/Weapon/Weapon.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/sprites/weapon/weapon002.png" type="Texture" id=21]
 
-[node name="MainScene" type="Node2D"]
+[node name="MainScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 10 )
 
-[node name="Player" type="Node" parent="."]
+[node name="TopArea" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.5
+mouse_filter = 2
 
-[node name="BackgroundSprite" type="Sprite" parent="."]
+[node name="BackgroundSprite" type="Sprite" parent="TopArea"]
 position = Vector2( 180, 180 )
 scale = Vector2( 0.333, 0.333 )
 texture = ExtResource( 5 )
 
-[node name="Monster" parent="." instance=ExtResource( 2 )]
+[node name="Monster" parent="TopArea" instance=ExtResource( 2 )]
 position = Vector2( 3, 37 )
 
-[node name="CandleParticles2D" type="CPUParticles2D" parent="."]
+[node name="CandleParticles2D" type="CPUParticles2D" parent="TopArea"]
 position = Vector2( 180, 204 )
 emitting = false
 one_shot = true
@@ -44,8 +53,88 @@ initial_velocity_random = 0.3
 angular_velocity = 720.0
 angular_velocity_random = 1.0
 
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+[node name="HUD" parent="TopArea" instance=ExtResource( 3 )]
 score = 0
+
+[node name="WeaponstScrollContainer" type="ScrollContainer" parent="."]
+anchor_top = 0.56
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_horizontal_enabled = false
+script = ExtResource( 19 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WeaponstScrollContainer"]
+margin_right = 300.0
+margin_bottom = 932.0
+rect_min_size = Vector2( 300, 300 )
+
+[node name="Weapon001" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_right = 300.0
+texture = ExtResource( 21 )
+weapon_name = "Candy Cane Crusher"
+level = 1
+initial_price = 10.0
+
+[node name="Weapon002" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 104.0
+margin_right = 300.0
+margin_bottom = 204.0
+weapon_name = "Gummy Bear Blaster"
+initial_price = 200.0
+
+[node name="Weapon003" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 208.0
+margin_right = 300.0
+margin_bottom = 308.0
+weapon_name = "Marshmallow Mallet"
+initial_price = 1000.0
+
+[node name="Weapon004" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 312.0
+margin_right = 300.0
+margin_bottom = 412.0
+weapon_name = "Peppermint Pistol"
+initial_price = 10000.0
+
+[node name="Weapon005" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 416.0
+margin_right = 300.0
+margin_bottom = 516.0
+weapon_name = "Lollipop Launcher"
+initial_price = 100000.0
+
+[node name="Weapon006" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 520.0
+margin_right = 300.0
+margin_bottom = 620.0
+weapon_name = "Jellybean Javelin"
+
+[node name="Weapon007" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 624.0
+margin_right = 300.0
+margin_bottom = 724.0
+weapon_name = "Taffy Tornado"
+
+[node name="Weapon008" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 728.0
+margin_right = 300.0
+margin_bottom = 828.0
+weapon_name = "Bubblegum Bazooka"
+
+[node name="Weapon009" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+margin_top = 832.0
+margin_right = 300.0
+margin_bottom = 932.0
+weapon_name = "Cookie Cutter Sword"
 
 [node name="Levels" type="Node" parent="."]
 
