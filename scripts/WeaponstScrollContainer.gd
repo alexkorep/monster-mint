@@ -24,19 +24,17 @@ func update_weapon_visibility():
 		return
 
 	# Make all weapons that have level > 0 visible. Make also the next weapon visible
-	var weapon_idx = 0
-	var last_visible_idx = 0
+	var next_should_be_visible = true
 	for weapon in $VBoxContainer.get_children():
 		if weapon.level > 0 :
 			weapon.visible = true
-			last_visible_idx = weapon_idx
 		else:
-			weapon.visible = false
+			if next_should_be_visible:
+				weapon.visible = true
+				next_should_be_visible = false
+			else:
+				weapon.visible = false
 
-	weapon_idx = last_visible_idx + 1
-	# Make weapon_idx visible
-	if weapon_idx < $VBoxContainer.get_child_count():
-		$VBoxContainer.get_child(weapon_idx).visible = true
 
 func _on_buy_weapon(weapon):
 	emit_signal("buy_clicked", weapon)
@@ -44,3 +42,9 @@ func _on_buy_weapon(weapon):
 func upgrade_weapon(weapon):
 	weapon.upgrade()
 	update_weapon_visibility()
+
+func get_total_hp():
+	var total_hp = 0
+	for weapon in $VBoxContainer.get_children():
+		total_hp += weapon.get_hp()
+	return total_hp

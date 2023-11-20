@@ -22,7 +22,6 @@ func _ready():
 func start_game():
 	# Initialize game state and score
 	is_game_over = false
-	increase_score(100)
 	emit_signal("score_updated", score)
 	set_level(0)
 
@@ -36,7 +35,7 @@ func increase_score(points):
 	HUD.set_score(score)
 
 func _on_ui_monster_hit():
-	var hp = 1
+	var hp = get_total_hp()
 	var health = Monster.current_health
 	if health > hp:
 		var new_health = health - hp
@@ -88,9 +87,5 @@ func _on_upgrade_weapon(weapon):
 		HUD.set_score(score)
 		WeaponstScrollContainer.upgrade_weapon(weapon)
 	
-# func get_hp():
-# 	# List all Upgrades
-# 	var hp = 1
-# 	for upgrade in Upgrades.get_children():
-# 		if upgrade.is_active:
-# 			hp += upgrade.hp
+func get_total_hp():
+	return WeaponstScrollContainer.get_total_hp()
