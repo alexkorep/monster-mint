@@ -18,7 +18,7 @@ func format_large_number(value):
 		suffix_index += 1
 	
 	# Format the number to have up to two decimal places and add the appropriate suffix
-	var number_string = "%.1f" % formatted_number
+	var number_string = "%.0f" % formatted_number
 	# Trim trailing zeros and the decimal point if not needed
 	number_string = number_string.trim_suffix(".0").trim_suffix("0")
 	return number_string + (suffixes[suffix_index] if suffix_index else "")

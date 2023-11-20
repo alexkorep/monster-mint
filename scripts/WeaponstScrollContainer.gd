@@ -9,8 +9,7 @@ var list_items = ["Item 1", "Item 2", "Item 3"]
 onready var Upgrades = $"../Upgrades"
 
 func _ready():
-	if hide_zero_level_weapons:
-		update_weapon_visibility()
+	update_weapon_visibility()
 	connect_weapon_signals()
 
 func connect_weapon_signals():
@@ -18,6 +17,12 @@ func connect_weapon_signals():
 		weapon.connect("buy_weapon_clicked", self, "_on_buy_weapon")
 
 func update_weapon_visibility():
+	if not hide_zero_level_weapons:
+		# Make all weapons visible
+		for weapon in $VBoxContainer.get_children():
+			weapon.visible = true
+		return
+
 	# Make all weapons that have level > 0 visible. Make also the next weapon visible
 	var weapon_idx = 0
 	var last_visible_idx = 0

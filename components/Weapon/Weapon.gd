@@ -20,8 +20,11 @@ export var price = 0 setget , get_price
 # How much the price increases per level
 export var price_multiplier: float = 1.1
 
+export var hp_per_level: int = 1
+
 func _ready():
-	pass
+	_set_level(level)
+	_set_initial_price(initial_price)
 
 func _on_BuyButton_pressed():
 	emit_signal("buy_weapon_clicked", self)
@@ -54,6 +57,10 @@ func update_price_label():
 	$Panel/PriceLabel.text = NumberFormatter.format_large_number(get_price_for_level(level))
 
 func _set_level(new_level):
+	print("Setting level to " + str(new_level))
 	level = new_level
 	update_price_label()
 	$Panel/LevelLabel.text = str(level)
+
+func get_hp():
+	return hp_per_level * level
