@@ -10,6 +10,7 @@ onready var HUD = $TopArea/HUD
 onready var BackgroundSprite = $TopArea/BackgroundSprite
 onready var WeaponstScrollContainer = $WeaponstScrollContainer
 onready var Settings = $Settings
+onready var LevelHUD = $TopArea/LevelHUD
 
 export var save_file_name = "user://save_game.dat"
 
@@ -18,6 +19,8 @@ func _ready():
 	WeaponstScrollContainer.connect("buy_clicked", self, "_on_upgrade_weapon")
 	HUD.connect("settings_pressed", self, "_on_settings_pressed")
 	Settings.connect("new_game", self, "new_game")
+	# LevelHUD.connect("prev_level", self, "prev_level")
+	# LevelHUD.connect("next_level", self, "next_level")
 
 	if not load_game():
 		new_game()
@@ -64,6 +67,7 @@ func set_level(level_no):
 	var level = get_current_level()
 	BackgroundSprite.texture = level.background
 	set_monster(0)
+	update_prev_next_buttons()
 	
 func set_monster(monster_no):
 	current_monster = monster_no
@@ -74,6 +78,7 @@ func set_monster(monster_no):
 	
 	var total_monsters = len(get_current_level().get_children())
 	HUD.set_monster_number(monster_no + 1, total_monsters)
+	update_prev_next_buttons()
 
 func next_monster():
 	current_monster += 1
@@ -153,3 +158,7 @@ func delete_game_file():
 
 func _on_settings_pressed():
 	$Settings.popup()
+
+func update_prev_next_buttons():
+	LevelHUD.enable_buttons(current_level == 0,
+		current_level == len($Levels.get_children()) - 1)
