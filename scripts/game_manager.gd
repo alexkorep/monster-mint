@@ -12,6 +12,7 @@ onready var BackgroundSprite = $TopArea/BackgroundSprite
 onready var WeaponstScrollContainer = $WeaponstScrollContainer
 onready var Settings = $Settings
 onready var LevelHUD = $TopArea/LevelHUD
+onready var Levels = $LevelManager
 
 export var save_file_name = "user://save_game.dat"
 
@@ -53,40 +54,32 @@ func _on_ui_monster_hit():
 		var new_health = health - hp
 		Monster.current_health = new_health
 	else:
-		var candies = get_current_monster().initial_health
+		var candies = Levels.get_monster_health(current_level)
 		increase_score(candies)
 		CandleParticles2D.emitting = true
 		next_monster()
 
-func get_current_level():
-	return $Levels.get_children()[current_level]
-	
 func get_monster_progress():
-	var monster_count = len(get_current_level().get_children())
+	var monster_count = Levels.monsters_per_level
 	if current_monster >= monster_count - 1:
 		return monster_count
 	return current_monster + 1
 
 func get_monsters_on_level():
-	return len(get_current_level().get_children())
-
-func get_current_monster():
-	var monster_index = current_monster % get_monsters_on_level()
-	return get_current_level().get_children()[monster_index]
+	return Levels.monsters_per_level
 
 func set_level(level_no):
 	current_level = level_no
-	var level = get_current_level()
-	BackgroundSprite.texture = level.background
+	BackgroundSprite.texture = Levels.get_level_background_texture(level_no)
 	set_monster(0)
 	update_level_hud()
 	
 func set_monster(monster_no):
 	current_monster = monster_no
-	var monster = get_current_monster()
-	Monster.initial_health = monster.initial_health
-	Monster.current_health = monster.initial_health
-	Monster.set_texture(monster.texture)
+	var health = Levels.get_monster_health(current_level)
+	Monster.initial_health = health
+	Monster.current_health = health
+	Monster.set_texture(Levels.get_monster_texture(current_level, current_monster))
 	
 	HUD.set_monster_number(get_monster_progress(), get_monsters_on_level())
 	update_level_hud()
@@ -98,8 +91,6 @@ func next_monster():
 
 func next_level():
 	current_level += 1
-	if current_level >= len($Levels.get_children()):
-		current_level = 0
 	set_level(current_level)
 	save_game()
 
@@ -174,7 +165,7 @@ func _on_settings_pressed():
 func update_level_hud():
 	var next_enabled = current_monster >= get_monsters_on_level() or current_level < max_open_level
 	LevelHUD.enable_buttons(current_level > 0, next_enabled)
-	LevelHUD.set_level(current_level + 1, get_current_level().Title)
+	LevelHUD.set_level(current_level + 1, Levels.get_level_name(current_level))
 
 func go_prev_level():
 	print(current_level)
@@ -192,8 +183,6 @@ func go_next_level():
 		return
 	current_level += 1
 	print('moving to ', current_level)
-	if current_level >= len($Levels.get_children()):
-		current_level = 0
 	if current_level > max_open_level:
 		max_open_level = current_level
 	set_level(current_level)
