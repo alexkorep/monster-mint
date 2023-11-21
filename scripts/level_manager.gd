@@ -17,7 +17,7 @@ export var level_names = [
 export var level_images: Array = []
 export var monster_images: Array = []
 export var monsters_per_level = 10
-	
+
 func get_level_background_texture(level):
 	var idx = level % level_images.size()
 	return level_images[idx]
@@ -27,7 +27,10 @@ func get_level_name(level):
 	return level_names[idx]
 
 func get_monster_health(level):
-	return 10 + level * 2
+	var health: float = 10
+	for _i in range(level):
+		health *= 2
+	return health
 
 func get_monster_texture(level, monster):
 	var idx = (level * monsters_per_level + monster) % monster_images.size()
