@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/sprites/backgrounds/background001.png" type="Texture" id=1]
 [ext_resource path="res://components/Monster/Monster.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://components/Weapon/Weapon.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/sprites/weapon/weapon002.png" type="Texture" id=21]
 [ext_resource path="res://assets/sprites/weapon/weapon003.png" type="Texture" id=22]
+[ext_resource path="res://components/Settings.tscn" type="PackedScene" id=23]
 
 [node name="MainScene" type="Control"]
 anchor_right = 1.0
@@ -197,3 +198,6 @@ background = ExtResource( 5 )
 script = ExtResource( 6 )
 initial_health = 10.0
 texture = ExtResource( 12 )
+
+[node name="Settings" parent="." instance=ExtResource( 23 )]
+visible = false

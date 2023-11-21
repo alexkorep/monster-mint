@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/DALL·E 2023-11-21 06.56.18 - A spritesheet of service icons like settings (gear icon), game save, game load, and other icons in candy style for a game, set against the same vibran.png-1116cfff7e910b944874927d75836b10.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://raw-images/DALL·E 2023-11-21 06.56.18 - A spritesheet of service icons like settings (gear icon), game save, game load, and other icons in candy style for a game, set against the same vibran.png"
+dest_files=[ "res://.import/DALL·E 2023-11-21 06.56.18 - A spritesheet of service icons like settings (gear icon), game save, game load, and other icons in candy style for a game, set against the same vibran.png-1116cfff7e910b944874927d75836b10.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

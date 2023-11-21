@@ -2,37 +2,42 @@ extends Node
 
 var current_level: int = 0
 var current_monster: int = 0
-# Initialize game state and score
-var is_game_over = false
-var score = 0
+var candies_score = 0
 
 onready var Monster = $TopArea/Monster
 onready var CandleParticles2D = $TopArea/CandleParticles2D
 onready var HUD = $TopArea/HUD
 onready var BackgroundSprite = $TopArea/BackgroundSprite
 onready var WeaponstScrollContainer = $WeaponstScrollContainer
+onready var Settings = $Settings
 
+export var save_file_name = "user://save_game.dat"
 
 func _ready():
 	Monster.connect("ui_monster_hit", self, "_on_ui_monster_hit")
 	WeaponstScrollContainer.connect("buy_clicked", self, "_on_upgrade_weapon")
+	HUD.connect("settings_pressed", self, "_on_settings_pressed")
+	Settings.connect("new_game", self, "new_game")
 
-	start_game()
+	if not load_game():
+		new_game()
 
-func start_game():
+func new_game():
+	delete_game_file()
+
 	# Initialize game state and score
-	is_game_over = false
-	emit_signal("score_updated", score)
 	set_level(0)
+	set_score(0)
+	set_monster(0)
+	WeaponstScrollContainer.reset_weapons()
 
-func end_game():
-	# Handle game over logic
-	is_game_over = true
+func set_score(score):
+	candies_score = score
+	HUD.set_score(candies_score)
 
 func increase_score(points):
 	# Increment the score
-	score += points
-	HUD.set_score(score)
+	set_score(candies_score + points)
 
 func _on_ui_monster_hit():
 	var hp = get_total_hp()
@@ -74,18 +79,71 @@ func next_monster():
 		next_level()
 	else:
 		set_monster(current_monster)
+	save_game()
 
 func next_level():
 	current_level += 1
 	if current_level >= len($Levels.get_children()):
 		current_level = 0
 	set_level(current_level)
+	save_game()
 
 func _on_upgrade_weapon(weapon):
-	if weapon.price < score:
-		score -= weapon.price
-		HUD.set_score(score)
+	if weapon.price <= candies_score:
+		candies_score -= weapon.price
+		HUD.set_score(candies_score)
 		WeaponstScrollContainer.upgrade_weapon(weapon)
+		save_game()
 	
 func get_total_hp():
-	return WeaponstScrollContainer.get_total_hp()
+	# +1 because it's initial hp without any weapons
+	return WeaponstScrollContainer.get_total_hp() + 1
+
+func save_game():
+	var save_game = File.new()
+	var save_data = {} # Your game data as a dictionary
+
+	# Populate save_data with game information
+	save_data["candies_score"] = candies_score
+	save_data["current_level"] = current_level
+	save_data["current_monster"] = current_monster
+	WeaponstScrollContainer.save_weapons(save_data)
+
+	save_game.open(save_file_name, File.WRITE)
+	save_game.store_var(save_data)
+	save_game.close()
+
+func save_game_exists():
+	var save_game = File.new()
+	if save_game.file_exists(save_file_name):
+			return true
+	return false
+
+func load_game():
+	var save_game = File.new()
+	if not save_game.file_exists(save_file_name):
+		return false
+
+	save_game.open(save_file_name, File.READ)
+	var save_data = save_game.get_var()
+	save_game.close()
+	
+	# Now extract the data and set it in your game
+	if (not save_data or 
+			not save_data.has("candies_score") or 
+			not save_data.has("current_level") or 
+			not save_data.has("current_monster")):
+		return  false
+
+	set_score(save_data["candies_score"])
+	set_level(save_data["current_level"])
+	set_monster(save_data["current_monster"])
+	WeaponstScrollContainer.load_weapons(save_data)
+	return true
+
+func delete_game_file():
+	var dir = Directory.new()
+	dir.remove(save_file_name)
+
+func _on_settings_pressed():
+	$Settings.popup()

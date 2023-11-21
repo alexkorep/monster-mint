@@ -24,8 +24,12 @@ export var hp_per_level: int = 1
 
 # Called when the node is added to the scene
 func _ready():
-	_set_level(level)
+	reset()
+
+func reset():
+	_set_level(0)
 	_set_initial_price(initial_price)
+	_update_hp_label()
 
 # Called when the BuyButton is pressed, emits a signal with the current weapon
 func _on_BuyButton_pressed():
@@ -67,11 +71,14 @@ func update_price_label():
 
 # Sets the level of the weapon, updates the price label and the level label
 func _set_level(new_level):
-	print("Setting level to " + str(new_level))
 	level = new_level
 	update_price_label()
 	$Panel/LevelLabel.text = str(level)
+	_update_hp_label()
 
 # Returns the current hit points (HP) of the weapon, calculated as the product of hp_per_level and the current level
 func get_hp():
 	return hp_per_level * level
+
+func _update_hp_label():
+	$Panel/HpLabel.text = NumberFormatter.format_large_number(get_hp()) + ' hp'

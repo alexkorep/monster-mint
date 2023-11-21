@@ -48,3 +48,25 @@ func get_total_hp():
 	for weapon in $VBoxContainer.get_children():
 		total_hp += weapon.get_hp()
 	return total_hp
+
+func reset_weapons():
+	for weapon in $VBoxContainer.get_children():
+		weapon.reset()
+
+func save_weapons(save_data):
+	# TODO think about backward compatibility
+	var container = {}
+	for weapon in $VBoxContainer.get_children():
+		container[weapon.name] = {
+			"level": weapon.level
+		}
+	save_data["weapons"] = container
+
+func load_weapons(save_data):
+	var container = save_data["weapons"]
+	for weapon in $VBoxContainer.get_children():
+		if container.has(weapon.name):
+			weapon.level = container[weapon.name]["level"]
+		else:
+			weapon.level = 0
+	update_weapon_visibility()

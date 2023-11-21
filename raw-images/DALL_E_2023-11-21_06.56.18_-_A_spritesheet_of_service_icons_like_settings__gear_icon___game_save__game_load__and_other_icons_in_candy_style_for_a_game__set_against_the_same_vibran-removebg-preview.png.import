@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/DALL_E_2023-11-21_06.56.18_-_A_spritesheet_of_service_icons_like_settings__gear_icon___game_save__game_load__and_other_icons_in_candy_style_for_a_game__set_against_the_same_vibran-removebg-preview.png-876b9f2290774b40321fe4b844a4afad.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://raw-images/DALL_E_2023-11-21_06.56.18_-_A_spritesheet_of_service_icons_like_settings__gear_icon___game_save__game_load__and_other_icons_in_candy_style_for_a_game__set_against_the_same_vibran-removebg-preview.png"
+dest_files=[ "res://.import/DALL_E_2023-11-21_06.56.18_-_A_spritesheet_of_service_icons_like_settings__gear_icon___game_save__game_load__and_other_icons_in_candy_style_for_a_game__set_against_the_same_vibran-removebg-preview.png-876b9f2290774b40321fe4b844a4afad.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
