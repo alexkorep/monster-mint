@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/sprites/backgrounds/background001.png" type="Texture" id=1]
 [ext_resource path="res://components/Monster/Monster.tscn" type="PackedScene" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://assets/sprites/weapon/weapon003.png" type="Texture" id=22]
 [ext_resource path="res://components/Settings.tscn" type="PackedScene" id=23]
 [ext_resource path="res://components/LevelHUD/LevelHUD.tscn" type="PackedScene" id=24]
+[ext_resource path="res://assets/sprites/monsters/monster010.png" type="Texture" id=25]
+[ext_resource path="res://assets/sprites/monsters/monster009.png" type="Texture" id=26]
 
 [node name="MainScene" type="Control"]
 anchor_right = 1.0
@@ -196,6 +198,21 @@ script = ExtResource( 6 )
 initial_health = 100.0
 texture = ExtResource( 14 )
 
+[node name="Monster01-08" type="Node" parent="Levels/Level001"]
+script = ExtResource( 6 )
+initial_health = 500.0
+texture = ExtResource( 12 )
+
+[node name="Monster01-09" type="Node" parent="Levels/Level001"]
+script = ExtResource( 6 )
+initial_health = 4000.0
+texture = ExtResource( 26 )
+
+[node name="Monster01-10" type="Node" parent="Levels/Level001"]
+script = ExtResource( 6 )
+initial_health = 100.0
+texture = ExtResource( 25 )
+
 [node name="Level002" type="Node" parent="Levels"]
 script = ExtResource( 4 )
 Title = "Sugary Peaks"
@@ -203,8 +220,53 @@ background = ExtResource( 5 )
 
 [node name="Monster02-01" type="Node" parent="Levels/Level002"]
 script = ExtResource( 6 )
-initial_health = 10.0
+initial_health = 1000.0
 texture = ExtResource( 12 )
+
+[node name="Monster02-02" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 2000.0
+texture = ExtResource( 7 )
+
+[node name="Monster02-03" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 3000.0
+texture = ExtResource( 11 )
+
+[node name="Monster02-04" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 4000.0
+texture = ExtResource( 13 )
+
+[node name="Monster02-05" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 5000.0
+texture = ExtResource( 8 )
+
+[node name="Monster02-06" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 6000.0
+texture = ExtResource( 9 )
+
+[node name="Monster02-07" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 7000.0
+texture = ExtResource( 14 )
+
+[node name="Monster02-08" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 8000.0
+texture = ExtResource( 12 )
+
+[node name="Monster02-09" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 9000.0
+texture = ExtResource( 26 )
+
+[node name="Monster02-10" type="Node" parent="Levels/Level002"]
+script = ExtResource( 6 )
+initial_health = 15000.0
+texture = ExtResource( 25 )
 
 [node name="Settings" parent="." instance=ExtResource( 23 )]
 visible = false

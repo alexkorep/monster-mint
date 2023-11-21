@@ -16,7 +16,7 @@ anchor_left = 0.1
 anchor_right = 0.1
 margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 20.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 40, 20 )
 text = "Prev"
 
@@ -24,10 +24,26 @@ text = "Prev"
 anchor_left = 0.9
 anchor_right = 0.9
 margin_left = -40.0
-margin_top = 10.0
-margin_bottom = 20.0
+margin_top = 8.0
+margin_right = 2.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 40, 20 )
 text = "Next"
+
+[node name="LevelNameLabel" type="Label" parent="MainPanel"]
+margin_left = 115.0
+margin_top = 11.0
+margin_right = 189.0
+margin_bottom = 25.0
+text = "Level name"
+
+[node name="LevelIndexLabel" type="Label" parent="MainPanel"]
+margin_left = 87.0
+margin_top = 11.0
+margin_right = 108.0
+margin_bottom = 25.0
+text = "1"
+align = 2
 
 [connection signal="pressed" from="MainPanel/PrevButton" to="." method="_on_PrevButton_pressed"]
 [connection signal="pressed" from="MainPanel/NextButton" to="." method="_on_NextButton_pressed"]

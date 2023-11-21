@@ -15,7 +15,7 @@ func _ready():
 func set_score(new_score: int):
 	score = new_score
 	if scoreLabel:
-		scoreLabel.text = str(score)
+		scoreLabel.text = NumberFormatter.format_large_number(score)
 		
 func set_monster_number(number, total):
 	monsterNumberLabel.text = str(number) + '/' + str(total)

@@ -3,6 +3,7 @@ extends Node
 var current_level: int = 0
 var current_monster: int = 0
 var candies_score = 0
+var max_open_level = 0
 
 onready var Monster = $TopArea/Monster
 onready var CandleParticles2D = $TopArea/CandleParticles2D
@@ -19,8 +20,8 @@ func _ready():
 	WeaponstScrollContainer.connect("buy_clicked", self, "_on_upgrade_weapon")
 	HUD.connect("settings_pressed", self, "_on_settings_pressed")
 	Settings.connect("new_game", self, "new_game")
-	# LevelHUD.connect("prev_level", self, "prev_level")
-	# LevelHUD.connect("next_level", self, "next_level")
+	LevelHUD.connect("prev_level", self, "go_prev_level")
+	LevelHUD.connect("next_level", self, "go_next_level")
 
 	if not load_game():
 		new_game()
@@ -34,6 +35,7 @@ func new_game():
 	set_monster(0)
 	WeaponstScrollContainer.reset_weapons()
 	HUD.set_hp(get_total_hp())
+	update_level_hud()
 
 func set_score(score):
 	candies_score = score
@@ -59,15 +61,25 @@ func _on_ui_monster_hit():
 func get_current_level():
 	return $Levels.get_children()[current_level]
 	
+func get_monster_progress():
+	var monster_count = len(get_current_level().get_children())
+	if current_monster >= monster_count - 1:
+		return monster_count
+	return current_monster + 1
+
+func get_monsters_on_level():
+	return len(get_current_level().get_children())
+
 func get_current_monster():
-	return get_current_level().get_children()[current_monster]
+	var monster_index = current_monster % get_monsters_on_level()
+	return get_current_level().get_children()[monster_index]
 
 func set_level(level_no):
 	current_level = level_no
 	var level = get_current_level()
 	BackgroundSprite.texture = level.background
 	set_monster(0)
-	update_prev_next_buttons()
+	update_level_hud()
 	
 func set_monster(monster_no):
 	current_monster = monster_no
@@ -76,16 +88,12 @@ func set_monster(monster_no):
 	Monster.current_health = monster.initial_health
 	Monster.set_texture(monster.texture)
 	
-	var total_monsters = len(get_current_level().get_children())
-	HUD.set_monster_number(monster_no + 1, total_monsters)
-	update_prev_next_buttons()
+	HUD.set_monster_number(get_monster_progress(), get_monsters_on_level())
+	update_level_hud()
 
 func next_monster():
 	current_monster += 1
-	if current_monster >= len(get_current_level().get_children()):
-		next_level()
-	else:
-		set_monster(current_monster)
+	set_monster(current_monster)
 	save_game()
 
 func next_level():
@@ -116,6 +124,7 @@ func save_game():
 	save_data["candies_score"] = candies_score
 	save_data["current_level"] = current_level
 	save_data["current_monster"] = current_monster
+	save_data["max_open_level"] = max_open_level
 	WeaponstScrollContainer.save_weapons(save_data)
 
 	save_game.open(save_file_name, File.WRITE)
@@ -141,15 +150,18 @@ func load_game():
 	if (not save_data or 
 			not save_data.has("candies_score") or 
 			not save_data.has("current_level") or 
-			not save_data.has("current_monster")):
+			not save_data.has("current_monster") or 
+			not save_data.has("max_open_level")):
 		return  false
 
 	set_score(save_data["candies_score"])
 	set_level(save_data["current_level"])
 	set_monster(save_data["current_monster"])
+	max_open_level = save_data["max_open_level"]
 	WeaponstScrollContainer.load_weapons(save_data)
 	WeaponstScrollContainer.disable_buy_button_if_not_enough_candles(candies_score)
 	HUD.set_hp(get_total_hp())
+	update_level_hud()
 	return true
 
 func delete_game_file():
@@ -159,6 +171,30 @@ func delete_game_file():
 func _on_settings_pressed():
 	$Settings.popup()
 
-func update_prev_next_buttons():
-	LevelHUD.enable_buttons(current_level == 0,
-		current_level == len($Levels.get_children()) - 1)
+func update_level_hud():
+	var next_enabled = current_monster >= get_monsters_on_level() or current_level < max_open_level
+	LevelHUD.enable_buttons(current_level > 0, next_enabled)
+	LevelHUD.set_level(current_level + 1, get_current_level().Title)
+
+func go_prev_level():
+	print(current_level)
+	if current_level <= 0:
+		return
+	current_level -= 1
+	set_level(current_level)
+	# Mark that we killed all monsters on this level
+	set_monster(get_monsters_on_level())
+	save_game()
+
+func go_next_level():
+	print('current_level', current_level, 'max_open_level', max_open_level)
+	if (current_monster < get_monsters_on_level()) and (current_level >= max_open_level):
+		return
+	current_level += 1
+	print('moving to ', current_level)
+	if current_level >= len($Levels.get_children()):
+		current_level = 0
+	if current_level > max_open_level:
+		max_open_level = current_level
+	set_level(current_level)
+	save_game()
