@@ -52,6 +52,7 @@ func get_total_hp():
 func reset_weapons():
 	for weapon in $VBoxContainer.get_children():
 		weapon.reset()
+	update_weapon_visibility()
 
 func save_weapons(save_data):
 	# TODO think about backward compatibility
@@ -70,3 +71,7 @@ func load_weapons(save_data):
 		else:
 			weapon.level = 0
 	update_weapon_visibility()
+
+func disable_buy_button_if_not_enough_candles(candles):
+	for weapon in $VBoxContainer.get_children():
+		weapon.disable_buy_button_if_not_enough_candles(candles)

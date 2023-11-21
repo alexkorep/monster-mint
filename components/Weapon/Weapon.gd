@@ -82,3 +82,9 @@ func get_hp():
 
 func _update_hp_label():
 	$Panel/HpLabel.text = NumberFormatter.format_large_number(get_hp()) + ' hp'
+
+func disable_buy_button_if_not_enough_candles(candles):
+	if candles < get_price():
+		$Panel/BuyButton.disabled = true
+	else:
+		$Panel/BuyButton.disabled = false
