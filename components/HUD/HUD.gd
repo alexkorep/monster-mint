@@ -6,6 +6,7 @@ export var score: int = 0 setget set_score
 
 onready var scoreLabel = $MainPanel/ScoreLabel
 onready var monsterNumberLabel = $MainPanel/MonsterNumberLabel
+onready var hpLabel = $MainPanel/HPLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,3 +22,6 @@ func set_monster_number(number, total):
 
 func _on_SettingsButton_pressed():
 	emit_signal("settings_pressed")
+
+func set_hp(hp):
+	hpLabel.text = NumberFormatter.format_large_number(hp) + 'hp'

@@ -30,6 +30,7 @@ func new_game():
 	set_score(0)
 	set_monster(0)
 	WeaponstScrollContainer.reset_weapons()
+	HUD.set_hp(get_total_hp())
 
 func set_score(score):
 	candies_score = score
@@ -95,6 +96,7 @@ func _on_upgrade_weapon(weapon):
 		HUD.set_score(candies_score)
 		WeaponstScrollContainer.upgrade_weapon(weapon)
 		WeaponstScrollContainer.disable_buy_button_if_not_enough_candles(candies_score)
+		HUD.set_hp(get_total_hp())
 		save_game()
 	
 func get_total_hp():
@@ -142,6 +144,7 @@ func load_game():
 	set_monster(save_data["current_monster"])
 	WeaponstScrollContainer.load_weapons(save_data)
 	WeaponstScrollContainer.disable_buy_button_if_not_enough_candles(candies_score)
+	HUD.set_hp(get_total_hp())
 	return true
 
 func delete_game_file():
