@@ -63,7 +63,7 @@ func get_monster_progress():
 	var monster_count = Levels.monsters_per_level
 	if current_monster >= monster_count - 1:
 		return monster_count
-	return current_monster + 1
+	return current_monster
 
 func get_monsters_on_level():
 	return Levels.monsters_per_level
