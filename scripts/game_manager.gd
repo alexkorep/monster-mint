@@ -61,7 +61,7 @@ func _on_ui_monster_hit():
 
 func get_monster_progress():
 	var monster_count = Levels.monsters_per_level
-	if current_monster >= monster_count - 1:
+	if current_monster >= monster_count:
 		return monster_count
 	return current_monster
 
@@ -168,7 +168,6 @@ func update_level_hud():
 	LevelHUD.set_level(current_level + 1, Levels.get_level_name(current_level))
 
 func go_prev_level():
-	print(current_level)
 	if current_level <= 0:
 		return
 	current_level -= 1
@@ -178,11 +177,9 @@ func go_prev_level():
 	save_game()
 
 func go_next_level():
-	print('current_level', current_level, 'max_open_level', max_open_level)
 	if (current_monster < get_monsters_on_level()) and (current_level >= max_open_level):
 		return
 	current_level += 1
-	print('moving to ', current_level)
 	if current_level > max_open_level:
 		max_open_level = current_level
 	set_level(current_level)
