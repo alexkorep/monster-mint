@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://components/Monster/Monster.tscn" type="PackedScene" id=2]
@@ -27,6 +27,28 @@
 [ext_resource path="res://assets/sprites/monsters/monster010.png" type="Texture" id=25]
 [ext_resource path="res://assets/sprites/monsters/monster009.png" type="Texture" id=26]
 [ext_resource path="res://assets/sprites/backgrounds/background003.png" type="Texture" id=27]
+[ext_resource path="res://assets/sprites/backgrounds/background017.png" type="Texture" id=28]
+[ext_resource path="res://assets/sprites/backgrounds/background023.png" type="Texture" id=29]
+[ext_resource path="res://assets/sprites/backgrounds/background021.png" type="Texture" id=30]
+[ext_resource path="res://assets/sprites/backgrounds/background011.png" type="Texture" id=31]
+[ext_resource path="res://assets/sprites/backgrounds/background018.png" type="Texture" id=32]
+[ext_resource path="res://assets/sprites/backgrounds/background007.png" type="Texture" id=33]
+[ext_resource path="res://assets/sprites/backgrounds/background014.png" type="Texture" id=34]
+[ext_resource path="res://assets/sprites/backgrounds/background005.png" type="Texture" id=35]
+[ext_resource path="res://assets/sprites/backgrounds/background024.png" type="Texture" id=36]
+[ext_resource path="res://assets/sprites/backgrounds/background013.png" type="Texture" id=37]
+[ext_resource path="res://assets/sprites/backgrounds/background025.png" type="Texture" id=38]
+[ext_resource path="res://assets/sprites/backgrounds/background008.png" type="Texture" id=39]
+[ext_resource path="res://assets/sprites/backgrounds/background009.png" type="Texture" id=40]
+[ext_resource path="res://assets/sprites/backgrounds/background012.png" type="Texture" id=41]
+[ext_resource path="res://assets/sprites/backgrounds/background026.png" type="Texture" id=42]
+[ext_resource path="res://assets/sprites/backgrounds/background022.png" type="Texture" id=43]
+[ext_resource path="res://assets/sprites/backgrounds/background019.png" type="Texture" id=44]
+[ext_resource path="res://assets/sprites/backgrounds/background015.png" type="Texture" id=45]
+[ext_resource path="res://assets/sprites/backgrounds/background020.png" type="Texture" id=46]
+[ext_resource path="res://assets/sprites/backgrounds/background010.png" type="Texture" id=47]
+[ext_resource path="res://assets/sprites/backgrounds/background016.png" type="Texture" id=48]
+[ext_resource path="res://assets/sprites/backgrounds/background006.png" type="Texture" id=49]
 
 [node name="MainScene" type="Control"]
 anchor_right = 1.0
@@ -41,11 +63,11 @@ mouse_filter = 2
 
 [node name="BackgroundSprite" type="Sprite" parent="TopArea"]
 position = Vector2( 180, 180 )
-scale = Vector2( 0.333, 0.333 )
+scale = Vector2( 0.345, 0.345 )
 texture = ExtResource( 5 )
 
 [node name="Monster" parent="TopArea" instance=ExtResource( 2 )]
-position = Vector2( 3, 37 )
+position = Vector2( 3, 0 )
 
 [node name="CandleParticles2D" type="CPUParticles2D" parent="TopArea"]
 position = Vector2( 180, 204 )
@@ -62,13 +84,14 @@ angular_velocity = 720.0
 angular_velocity_random = 1.0
 
 [node name="HUD" parent="TopArea" instance=ExtResource( 3 )]
+position = Vector2( 0, -7 )
 score = 0
 
 [node name="LevelHUD" parent="TopArea" instance=ExtResource( 24 )]
-margin_left = 10.0
-margin_top = 321.0
-margin_right = -18.0
-margin_bottom = 357.0
+margin_left = 13.0
+margin_top = 308.0
+margin_right = -15.0
+margin_bottom = 344.0
 
 [node name="WeaponstScrollContainer" type="ScrollContainer" parent="."]
 anchor_top = 0.56
@@ -108,7 +131,7 @@ margin_right = 300.0
 margin_bottom = 308.0
 texture = ExtResource( 17 )
 weapon_name = "Marshmallow Mallet"
-initial_price = 1000.0
+initial_price = 20000.0
 hp_per_level = 100
 
 [node name="Weapon004" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
@@ -118,7 +141,7 @@ margin_right = 300.0
 margin_bottom = 412.0
 texture = ExtResource( 22 )
 weapon_name = "Peppermint Pistol"
-initial_price = 10000.0
+initial_price = 2e+06
 hp_per_level = 1000
 
 [node name="Weapon005" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
@@ -126,29 +149,40 @@ anchor_right = 0.0
 margin_top = 416.0
 margin_right = 300.0
 margin_bottom = 516.0
+texture = ExtResource( 18 )
 weapon_name = "Lollipop Launcher"
-initial_price = 100000.0
+initial_price = 4e+08
+hp_per_level = 10000
 
 [node name="Weapon006" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 520.0
 margin_right = 300.0
 margin_bottom = 620.0
+texture = ExtResource( 21 )
 weapon_name = "Jellybean Javelin"
+initial_price = 1e+11
+hp_per_level = 100000
 
 [node name="Weapon007" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 624.0
 margin_right = 300.0
 margin_bottom = 724.0
+texture = ExtResource( 22 )
 weapon_name = "Taffy Tornado"
+initial_price = 1e+21
+hp_per_level = 1000000
 
 [node name="Weapon008" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 728.0
 margin_right = 300.0
 margin_bottom = 828.0
+texture = ExtResource( 17 )
 weapon_name = "Bubblegum Bazooka"
+initial_price = 1e+23
+hp_per_level = 10000000
 
 [node name="Weapon009" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
@@ -156,10 +190,11 @@ margin_top = 832.0
 margin_right = 300.0
 margin_bottom = 932.0
 weapon_name = "Cookie Cutter Sword"
+initial_price = 1e+25
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource( 1 )
-level_images = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 27 ), ExtResource( 5 ) ]
+level_images = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 27 ), ExtResource( 5 ), ExtResource( 35 ), ExtResource( 49 ), ExtResource( 33 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 47 ), ExtResource( 31 ), ExtResource( 41 ), ExtResource( 37 ), ExtResource( 34 ), ExtResource( 45 ), ExtResource( 48 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 44 ), ExtResource( 46 ), ExtResource( 30 ), ExtResource( 43 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 38 ), ExtResource( 42 ) ]
 monster_images = [ ExtResource( 15 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 26 ), ExtResource( 25 ) ]
 
 [node name="Settings" parent="." instance=ExtResource( 23 )]

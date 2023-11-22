@@ -54,7 +54,7 @@ func _on_ui_monster_hit():
 		var new_health = health - hp
 		Monster.current_health = new_health
 	else:
-		var candies = Levels.get_monster_health(current_level)
+		var candies = Levels.get_monster_reward(current_level)
 		increase_score(candies)
 		CandleParticles2D.emitting = true
 		next_monster()
