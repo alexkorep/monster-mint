@@ -107,19 +107,18 @@ rect_min_size = Vector2( 0, 36 )
 margin_top = 322.0
 margin_right = 360.0
 margin_bottom = 640.0
+mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 script = ExtResource( 19 )
 hide_zero_level_weapons = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WeaponstScrollContainer"]
-margin_right = 300.0
 margin_bottom = 932.0
-rect_min_size = Vector2( 300, 300 )
 
 [node name="Weapon001" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
-margin_right = 300.0
+margin_bottom = 100.0
 texture = ExtResource( 18 )
 weapon_name = "Candy Cane Crusher"
 level = 1
@@ -128,7 +127,6 @@ initial_price = 10.0
 [node name="Weapon002" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 104.0
-margin_right = 300.0
 margin_bottom = 204.0
 texture = ExtResource( 21 )
 weapon_name = "Gummy Bear Blaster"
@@ -138,7 +136,6 @@ hp_per_level = 20
 [node name="Weapon003" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 208.0
-margin_right = 300.0
 margin_bottom = 308.0
 texture = ExtResource( 17 )
 weapon_name = "Marshmallow Mallet"
@@ -148,7 +145,6 @@ hp_per_level = 100
 [node name="Weapon004" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 312.0
-margin_right = 300.0
 margin_bottom = 412.0
 texture = ExtResource( 22 )
 weapon_name = "Peppermint Pistol"
@@ -158,7 +154,6 @@ hp_per_level = 1000
 [node name="Weapon005" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 416.0
-margin_right = 300.0
 margin_bottom = 516.0
 texture = ExtResource( 18 )
 weapon_name = "Lollipop Launcher"
@@ -168,7 +163,6 @@ hp_per_level = 10000
 [node name="Weapon006" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 520.0
-margin_right = 300.0
 margin_bottom = 620.0
 texture = ExtResource( 21 )
 weapon_name = "Jellybean Javelin"
@@ -178,7 +172,6 @@ hp_per_level = 100000
 [node name="Weapon007" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 624.0
-margin_right = 300.0
 margin_bottom = 724.0
 texture = ExtResource( 22 )
 weapon_name = "Taffy Tornado"
@@ -188,7 +181,6 @@ hp_per_level = 1000000
 [node name="Weapon008" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 728.0
-margin_right = 300.0
 margin_bottom = 828.0
 texture = ExtResource( 17 )
 weapon_name = "Bubblegum Bazooka"
@@ -198,7 +190,6 @@ hp_per_level = 10000000
 [node name="Weapon009" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 832.0
-margin_right = 300.0
 margin_bottom = 932.0
 weapon_name = "Cookie Cutter Sword"
 initial_price = 1e+25
@@ -209,4 +200,3 @@ level_images = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 27 ), ExtResou
 monster_images = [ ExtResource( 15 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 26 ), ExtResource( 25 ) ]
 
 [node name="Settings" parent="." instance=ExtResource( 23 )]
-visible = false

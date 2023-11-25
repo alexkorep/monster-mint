@@ -6,7 +6,6 @@ export var hide_zero_level_weapons = false
 
 var item_template = preload("res://components/Weapon/Weapon.tscn")
 var list_items = ["Item 1", "Item 2", "Item 3"]
-onready var Upgrades = $"../Upgrades"
 
 func _ready():
 	update_weapon_visibility()
