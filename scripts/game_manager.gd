@@ -5,13 +5,14 @@ var current_monster: int = 0
 var candies_score = 0
 var max_open_level = 0
 
-onready var Monster = $TopArea/Monster
-onready var CandleParticles2D = $TopArea/CandleParticles2D
-onready var HUD = $TopArea/HUD
-onready var BackgroundSprite = $TopArea/BackgroundSprite
-onready var WeaponstScrollContainer = $WeaponstScrollContainer
+onready var TopArea = $VBoxContainer/TopArea
+onready var Monster = TopArea.get_node("Monster")
+onready var CandleParticles2D = TopArea.get_node("CandleParticles2D")
+onready var HUD = TopArea.get_node("HUD")
+onready var LevelHUD = TopArea.get_node("LevelHUD")
+onready var BackgroundSprite = TopArea.get_node("BackgroundSprite")
+onready var WeaponstScrollContainer = $VBoxContainer/WeaponstScrollContainer
 onready var Settings = $Settings
-onready var LevelHUD = $TopArea/LevelHUD
 onready var Levels = $LevelManager
 
 export var save_file_name = "user://save_game.dat"

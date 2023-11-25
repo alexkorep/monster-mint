@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 signal ui_monster_hit()
 
 export var initial_health: float = 0

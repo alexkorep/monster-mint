@@ -56,20 +56,25 @@ anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 10 )
 
-[node name="TopArea" type="Control" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="BackgroundSprite" type="Sprite" parent="TopArea"]
-position = Vector2( 180, 180 )
-scale = Vector2( 0.345, 0.345 )
+[node name="TopArea" type="Control" parent="VBoxContainer"]
+margin_right = 360.0
+margin_bottom = 318.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="BackgroundSprite" type="TextureRect" parent="VBoxContainer/TopArea"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 5 )
+expand = true
 
-[node name="Monster" parent="TopArea" instance=ExtResource( 2 )]
-position = Vector2( 3, 0 )
-
-[node name="CandleParticles2D" type="CPUParticles2D" parent="TopArea"]
+[node name="CandleParticles2D" type="CPUParticles2D" parent="VBoxContainer/TopArea"]
 position = Vector2( 180, 204 )
 emitting = false
 one_shot = true
@@ -83,30 +88,36 @@ initial_velocity_random = 0.3
 angular_velocity = 720.0
 angular_velocity_random = 1.0
 
-[node name="HUD" parent="TopArea" instance=ExtResource( 3 )]
-position = Vector2( 0, -7 )
+[node name="Monster" parent="VBoxContainer/TopArea" instance=ExtResource( 2 )]
+
+[node name="HUD" parent="VBoxContainer/TopArea" instance=ExtResource( 3 )]
+mouse_filter = 2
 score = 0
 
-[node name="LevelHUD" parent="TopArea" instance=ExtResource( 24 )]
-margin_left = 13.0
-margin_top = 308.0
-margin_right = -15.0
-margin_bottom = 344.0
-
-[node name="WeaponstScrollContainer" type="ScrollContainer" parent="."]
-anchor_top = 0.56
-anchor_right = 1.0
+[node name="LevelHUD" parent="VBoxContainer/TopArea" instance=ExtResource( 24 )]
+anchor_top = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_right = -12.0
+margin_bottom = -8.0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 36 )
+
+[node name="WeaponstScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+margin_top = 322.0
+margin_right = 360.0
+margin_bottom = 640.0
+size_flags_vertical = 3
 scroll_horizontal_enabled = false
 script = ExtResource( 19 )
 hide_zero_level_weapons = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WeaponstScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WeaponstScrollContainer"]
 margin_right = 300.0
 margin_bottom = 932.0
 rect_min_size = Vector2( 300, 300 )
 
-[node name="Weapon001" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon001" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_right = 300.0
 texture = ExtResource( 18 )
@@ -114,7 +125,7 @@ weapon_name = "Candy Cane Crusher"
 level = 1
 initial_price = 10.0
 
-[node name="Weapon002" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon002" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 104.0
 margin_right = 300.0
@@ -124,7 +135,7 @@ weapon_name = "Gummy Bear Blaster"
 initial_price = 200.0
 hp_per_level = 20
 
-[node name="Weapon003" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon003" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 208.0
 margin_right = 300.0
@@ -134,7 +145,7 @@ weapon_name = "Marshmallow Mallet"
 initial_price = 20000.0
 hp_per_level = 100
 
-[node name="Weapon004" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon004" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 312.0
 margin_right = 300.0
@@ -144,7 +155,7 @@ weapon_name = "Peppermint Pistol"
 initial_price = 2e+06
 hp_per_level = 1000
 
-[node name="Weapon005" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon005" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 416.0
 margin_right = 300.0
@@ -154,7 +165,7 @@ weapon_name = "Lollipop Launcher"
 initial_price = 4e+08
 hp_per_level = 10000
 
-[node name="Weapon006" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon006" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 520.0
 margin_right = 300.0
@@ -164,7 +175,7 @@ weapon_name = "Jellybean Javelin"
 initial_price = 1e+11
 hp_per_level = 100000
 
-[node name="Weapon007" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon007" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 624.0
 margin_right = 300.0
@@ -174,7 +185,7 @@ weapon_name = "Taffy Tornado"
 initial_price = 1e+21
 hp_per_level = 1000000
 
-[node name="Weapon008" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon008" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 728.0
 margin_right = 300.0
@@ -184,7 +195,7 @@ weapon_name = "Bubblegum Bazooka"
 initial_price = 1e+23
 hp_per_level = 10000000
 
-[node name="Weapon009" parent="WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="Weapon009" parent="VBoxContainer/WeaponstScrollContainer/VBoxContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 margin_top = 832.0
 margin_right = 300.0

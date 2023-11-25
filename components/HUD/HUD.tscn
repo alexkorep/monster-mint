@@ -5,15 +5,16 @@
 [ext_resource path="res://components/HUD/HUD.gd" type="Script" id=4]
 [ext_resource path="res://assets/sprites/icons/settings.png" type="Texture" id=5]
 
-[node name="HUD" type="Node2D"]
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 4 )
 score = 18
 
 [node name="MainPanel" type="Panel" parent="."]
-margin_left = 16.0
-margin_top = 29.0
-margin_right = 346.0
-margin_bottom = 61.0
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
 
 [node name="ScoreCandySprite" type="Sprite" parent="MainPanel"]
 position = Vector2( 92, 16 )

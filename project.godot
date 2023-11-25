@@ -13,6 +13,7 @@ config_version=4
 config/name="monster-mint"
 run/main_scene="res://screens/MainScene.tscn"
 config/icon="res://icon.png"
+config/version="1.1.4"
 
 [autoload]
 
@@ -23,6 +24,7 @@ NumberFormatter="*res://scripts/number_formatter.gd"
 window/size/width=360
 window/size/height=640
 window/size/resizable=false
+window/handheld/orientation="portrait"
 
 [global]
 
